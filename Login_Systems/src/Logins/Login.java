@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package Logins;
+import javax.swing.JOptionPane;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import Logins.Login_s;        
 /**
  *
  * @author oscar
@@ -56,6 +60,11 @@ public class Login extends javax.swing.JFrame {
 
         jbtnLogin.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jbtnLogin.setText("Login");
+        jbtnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnLoginActionPerformed(evt);
+            }
+        });
 
         jbtnReset.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jbtnReset.setText("Reset");
@@ -78,13 +87,6 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jbtnLogin)
-                .addGap(157, 157, 157)
-                .addComponent(jbtnReset)
-                .addGap(120, 120, 120)
-                .addComponent(jbntExit))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -92,7 +94,16 @@ public class Login extends javax.swing.JFrame {
                 .addGap(249, 249, 249)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(jtxtUserName)))
+                    .addComponent(jtxtUserName))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jbtnLogin)
+                .addGap(109, 109, 109)
+                .addComponent(jbtnReset)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(jbntExit)
+                .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,6 +163,27 @@ public class Login extends javax.swing.JFrame {
              jPassword.setText(null);// Clears both text boxes:
     }//GEN-LAST:event_jbtnResetActionPerformed
 
+    private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
+             String password =jPassword.getText();
+             String username = jtxtUserName.getText();
+             if (password.contains("one") && (username.contains("king")))
+             {
+                 jtxtUserName.setText(null);
+                 jPassword.setText(null);
+                 systemExit();
+                 
+                 Login_s Info = new Login_s();
+                 Info.setVisible(true);
+             }
+             
+             else
+             {
+               JOptionPane.showMessageDialog(null,"Invalid Login Details","Login Error",JOptionPane.ERROR_MESSAGE);
+               jPassword.setText(null);
+               jtxtUserName.setText(null);
+             }
+    }//GEN-LAST:event_jbtnLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,4 +230,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jbtnReset;
     private javax.swing.JTextField jtxtUserName;
     // End of variables declaration//GEN-END:variables
+
+
+private void systemExit(){
+WindowEvent winCloseing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+}
+    
 }
